@@ -81,10 +81,8 @@ namespace Scada.Admin.Extensions.ExtImport.Forms
                 }
 
             }
-            
 
-				gridViewFiller();
-   
+			gridViewFiller();
         }
 
 
@@ -428,7 +426,7 @@ namespace Scada.Admin.Extensions.ExtImport.Forms
                         CnlNum = cnlNum,
                         Active = cnlPrototype.Active,
                         DataLen = cnlPrototype.DataLen,
-                        CnlTypeID = cnlPrototype.CnlTypeID,
+                        CnlTypeID = CnlTypeID.InputOutput,
                         DeviceNum = deviceNum,
                         FormulaEnabled = cnlPrototype.FormulaEnabled,
                         InFormula = cnlPrototype.InFormula,
