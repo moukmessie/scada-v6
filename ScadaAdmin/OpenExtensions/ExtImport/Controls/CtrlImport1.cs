@@ -104,6 +104,9 @@ namespace Scada.Admin.Extensions.ExtImport.Controls
             List<CommLine> commLines = new(project.ConfigDatabase.CommLineTable.ItemCount + 1);
             commLines.Add(new CommLine { CommLineNum = 0, Name = ExtensionPhrases.AllCommLines });
             commLines.AddRange(project.ConfigDatabase.CommLineTable.Enumerate().OrderBy(line => line.Name));
+
+            commLines = commLines.GroupBy(line => line.Name).Select(group => group.First()).ToList();
+            
             cbCommLine.DataSource = commLines;
 
             try { cbCommLine.SelectedValue = recentSelection.CommLineNum; }
