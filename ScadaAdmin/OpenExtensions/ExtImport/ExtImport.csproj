@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<ItemGroup>
+		<PackageReference Include="WinControl" Version="2.1.0" />
+	</ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+	  <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <RootNamespace>Scada.Admin.Extensions.ExtImport</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="ScadaAdminCommon">
+      <HintPath>..\..\ScadaAdmin\ScadaAdminCommon\bin\Release\net6.0-windows\ScadaAdminCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="ScadaCommCommon">
+      <HintPath>..\..\ScadaAdmin\ScadaAdminCommon\bin\Release\net6.0-windows\ScadaCommCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="ScadaCommon">
+      <HintPath>..\..\ScadaAdmin\ScadaAdminCommon\bin\Release\net6.0-windows\ScadaCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="ScadaCommon.Forms">
+      <HintPath>..\..\ScadaAdmin\ScadaAdminCommon\bin\Release\net6.0-windows\ScadaCommon.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="ScadaCommon.Log">
+      <HintPath>..\..\ScadaAdmin\ScadaAdminCommon\bin\Release\net6.0-windows\ScadaCommon.Log.dll</HintPath>
+    </Reference>
+	<Reference Include="ScadaServerCommon">
+      <HintPath>..\..\ScadaAdmin\ScadaAdminCommon\bin\Release\net6.0-windows\ScadaServerCommon.dll</HintPath>
+	</Reference>
+	  <Reference Include="DrvModbus.Common">
+		  <HintPath>..\..\ScadaAdmin\ScadaAdmin\bin\Release\net6.0-windows\Lib\DrvModbus.Common.dll</HintPath>
+	  </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Controls\CtrlCnlImport1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Controls\CtrlCnlImport2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Controls\CtrlCnlImport3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Forms\FrmCnlImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FrmCnlsMerge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Lang\ExtImport.en-GB.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(TargetDir)\..\..\..\..\..\ScadaAdmin\ScadaAdmin\bin\Debug\net6.0-windows\Lib\$(ProjectName).dll&quot;" />
+  </Target>
+</Project>

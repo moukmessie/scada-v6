@@ -9,6 +9,7 @@
 //             StaticPictureRenderer
 //                 DynamicPictureRenderer
 
+
 // Namespaces
 var scada = scada || {};
 scada.scheme = scada.scheme || {};

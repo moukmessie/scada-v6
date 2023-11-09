@@ -130,7 +130,8 @@ namespace Scada.Admin.Config
                     foreach (XmlElement moduleElem in modulesNode.SelectNodes("Extension"))
                     {
                         string moduleCode = ScadaUtils.RemoveFileNameSuffixes(moduleElem.GetAttribute("code"));
-
+                        if (moduleCode == "ExtSubFolder") EnableSubFolder(true);
+                        if (moduleCode == "ExtBitReader") EnableBitReader(true);
                         if (extensionCodes.Add(moduleCode.ToLowerInvariant())) // check uniqueness
                             ExtensionCodes.Add(moduleCode);
                     }
@@ -232,6 +233,22 @@ namespace Scada.Admin.Config
             }
 
             return options;
+        }
+        public bool subFolderEnabled { get; private set; } = false;
+
+        public bool EnableSubFolder (bool activate)
+        {
+            subFolderEnabled = activate;
+
+            return activate;
+        }
+
+        public bool bitReaderEnabled { get; private set; } = false;
+
+        public bool EnableBitReader(bool activate)
+        {
+            bitReaderEnabled = activate;
+            return activate;
         }
     }
 }
