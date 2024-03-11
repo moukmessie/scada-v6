@@ -111,9 +111,6 @@ jobs:
    # - name: Publish OpenExtensions
     #  run: dotnet publish ScadaAdmin/OpenExtensions/OpenExtensions.sln --no-restore --configuration Release --output ./publish/OpenExtensions
 
-        
-
-
     # Téléchargez les artefacts pour tous les projets nécessaires ici
     - name: Upload ScadaWeb Artefact
       uses: actions/upload-artifact@v2
