@@ -138,6 +138,7 @@ jobs:
           ./publish/ScadaWeb/ScadaWeb.dll
           ./publish/ScadaWeb/ScadaWebCommon.dll
           ./publish/ScadaWeb/ScadaCommon.dll
+          ./publish/ScadaWeb/PlgSchShapeComp.dll
           ./publish/OpenPlugins/PlgSchShapeComp.dll 
           ./publish/OpenPlugins/wwwroot/SchShapeComp/**/*
 
