@@ -110,7 +110,10 @@ jobs:
       run: dotnet publish ScadaWeb/OpenPlugins/OpenPlugins.sln --no-restore --configuration Release --output ./publish/OpenPlugins
 
     - name: Copy PlgSchShapeComp.dll to ScadaWeb Publish Directory
-      run: cp ./publish/OpenPlugins/PlgSchShapeComp.dll ./publish/ScadaWeb/
+      run: |
+        Copy-Item -Path "./publish/OpenPlugins/PlgSchShapeComp.dll" -Destination "./publish/ScadaWeb/"
+      shell: pwsh
+    
 
 
     # - name: Publish OpenExtensions
