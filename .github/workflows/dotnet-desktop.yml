@@ -74,7 +74,7 @@ jobs:
     # - name: Build OpenExtensions
     #   run: dotnet build --no-restore --configuration Release ScadaAdmin/OpenExtensions/OpenExtensions.sln
 
-    # Ajoutez des étapes similaires pour les autres projets ici, en respectant l'ordre
+    
 
     - name: Publish ScadaCommon
       run: dotnet publish ScadaCommon/ScadaCommon.sln --no-restore --configuration Release --output ./publish/ScadaCommon
@@ -109,6 +109,10 @@ jobs:
     - name: Publish OpenPlugins
       run: dotnet publish ScadaWeb/OpenPlugins/OpenPlugins.sln --no-restore --configuration Release --output ./publish/OpenPlugins
 
+    - name: Copy PlgSchShapeComp.dll to ScadaWeb Publish Directory
+      run: cp ./publish/OpenPlugins/PlgSchShapeComp.dll ./publish/ScadaWeb/
+
+
     # - name: Publish OpenExtensions
     #   run: dotnet publish ScadaAdmin/OpenExtensions/OpenExtensions.sln --no-restore --configuration Release --output ./publish/OpenExtensions
 
@@ -132,6 +136,5 @@ jobs:
           ./publish/ScadaWeb/ScadaWebCommon.dll
           ./publish/ScadaWeb/ScadaCommon.dll
           ./publish/OpenPlugins/PlgSchShapeComp.dll 
-          ./publish/OpenPlugins/PlgSchShapeComp.dll --output wwwroot
-          ./publish/OpenPlugins/wwwroot/SchShapeComp/**/* --output wwwroot
+          ./publish/OpenPlugins/wwwroot/SchShapeComp/**/*
 
