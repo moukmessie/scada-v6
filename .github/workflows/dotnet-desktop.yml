@@ -33,7 +33,8 @@ jobs:
         dotnet restore ScadaComm/OpenDrivers2/OpenDrivers2.sln
         dotnet restore ScadaServer/OpenModules/OpenModules.sln
         dotnet restore ScadaWeb/OpenPlugins/OpenPlugins.sln
-        dotnet restore ScadaAdmin/OpenExtensions/OpenExtensions.sln
+        
+      ## dotnet restore ScadaAdmin/OpenExtensions/OpenExtensions.sln
         
 
     # Construisez chaque projet dans l'ordre spécifié
@@ -108,8 +109,8 @@ jobs:
     - name: Publish OpenPlugins
       run: dotnet publish ScadaWeb/OpenPlugins/OpenPlugins.sln --no-restore --configuration Release --output ./publish/OpenPlugins
 
-    - name: Publish OpenExtensions
-      run: dotnet publish ScadaAdmin/OpenExtensions/OpenExtensions.sln --no-restore --configuration Release --output ./publish/OpenExtensions
+    # - name: Publish OpenExtensions
+    #   run: dotnet publish ScadaAdmin/OpenExtensions/OpenExtensions.sln --no-restore --configuration Release --output ./publish/OpenExtensions
 
         
     # Téléchargez les artefacts pour tous les projets nécessaires ici
