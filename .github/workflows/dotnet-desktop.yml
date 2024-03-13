@@ -74,7 +74,7 @@ jobs:
     # - name: Build OpenExtensions
     #   run: dotnet build --no-restore --configuration Release ScadaAdmin/OpenExtensions/OpenExtensions.sln
 
-    # Ajoutez des étapes similaires pour les autres projets ici, en respectant l'ordre
+    
 
     - name: Publish ScadaCommon
       run: dotnet publish ScadaCommon/ScadaCommon.sln --no-restore --configuration Release --output ./publish/ScadaCommon
@@ -109,27 +109,25 @@ jobs:
     - name: Publish OpenPlugins
       run: dotnet publish ScadaWeb/OpenPlugins/OpenPlugins.sln --no-restore --configuration Release --output ./publish/OpenPlugins
 
+    - name: Copy PlgSchShapeComp.dll to ScadaWeb Publish Directory
+      run: |
+        Copy-Item -Path "./publish/OpenPlugins/PlgSchShapeComp.dll" -Destination "./publish/ScadaWeb/"
+      shell: pwsh
+    
+
+
     # - name: Publish OpenExtensions
     #   run: dotnet publish ScadaAdmin/OpenExtensions/OpenExtensions.sln --no-restore --configuration Release --output ./publish/OpenExtensions
 
-        
-    # Téléchargez les artefacts pour tous les projets nécessaires ici
-    # - name: Upload ScadaWeb Artefact
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: scadaweb-artifact
-    #     path: ./publish/**/*
+    - name: Upload ScadaAdmin Artefacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: scadaadmin-release-artifacts
+        path: |
+          ./publish/ScadaAdmin/ScadaAdmin.dll
+          ./publish/ScadaAdmin/ScadaAdmin.exe
+          ./publish/ScadaAdmin/ScadaAdminCommon.dll
 
-    - name: Upload JavaScript files
-      uses: actions/upload-artifact@v2
-      with:
-        name: javascript-files
-        path: ./publish/OpenPlugins/wwwroot/SchShapeComp/**/*
-    - name: Upload PlgSchShapeComp Release Artefact
-      uses: actions/upload-artifact@v2
-      with:
-        name: plg-sch-shape-comp-release
-        path: ./publish/OpenPlugins/PlgSchShapeComp.dll
 
     - name: Upload ScadaWeb Artefacts
       uses: actions/upload-artifact@v2
@@ -140,4 +138,7 @@ jobs:
           ./publish/ScadaWeb/ScadaWeb.dll
           ./publish/ScadaWeb/ScadaWebCommon.dll
           ./publish/ScadaWeb/ScadaCommon.dll
+          ./publish/ScadaWeb/PlgSchShapeComp.dll
+          ./publish/OpenPlugins/PlgSchShapeComp.dll 
+          ./publish/OpenPlugins/wwwroot/SchShapeComp/**/*
 
